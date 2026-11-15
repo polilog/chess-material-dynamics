@@ -1,0 +1,11 @@
+source,target,WDL,black_to_move,FEN,UCI_moves,distance,target_FEN
+KBNNvK,KNvK,0,1,8/8/8/8/8/8/B7/kNKN4 b - - 0 1,a1a2 b1a3 a2a3,3 2 1 0,8/8/8/8/8/k7/8/2KN4 w - - 0 1
+KBNNvK,KNNvK,0,1,8/8/8/8/8/8/B7/kNKN4 b - - 0 1,a1a2,3 2,8/8/8/8/8/8/k7/1NKN4 w - - 0 1
+KBNNvK,KBNvK,1,1,8/8/8/8/8/8/1B6/kNK1N3 b - - 0 1,a1a2 b1a3 a2b3 e1d3 b3a4 b2c3 a4b3 c1d2 b3a3,22 21 20 19 18 17 16 15 14 13,8/8/8/8/8/k1BN4/3K4/8 w - - 0 1
+KBNNvK,KBNvK,1,0,8/8/8/8/8/8/8/k1KN1N1B w - - 0 1,c1c2 a1a2 f1d2 a2a3 c2c3 a3a4 d2c4 a4b5 h1b7 b5c5 d1b2 c5b5 b2a4 b5a4,15 14 13 12 11 10 9 8 7 6 5 4 3 2 1,8/1B6/8/8/k1N5/2K5/8/8 w - - 0 1
+KBNNvK,KBNvK,0,1,8/8/8/8/8/1N6/NB6/k1K5 b - - 0 1,a1a2,2 1,8/8/8/8/8/1N6/kB6/2K5 w - - 0 1
+KBNNvK,KBvK,0,1,8/8/8/8/8/8/BN6/kN1K4 b - - 0 1,a1b2 b1a3 b2a3,3 2 1 0,8/8/8/8/8/k7/B7/3K4 w - - 0 1
+KBNNvK,KNNvK,0,0,8/8/8/8/8/8/kN6/BNK5 w - - 0 1,b1c3 a2a1,3 2 1,8/8/8/8/8/2N5/1N6/k1K5 w - - 0 1
+KBNNvK,KNvK,0,0,8/8/8/8/8/8/kN6/B2K1N2 w - - 0 1,d1c1 a2a1 c1d1 a1b2,4 3 2 1 0,8/8/8/8/8/8/1k6/3K1N2 w - - 0 1
+KBNNvK,KBvK,0,0,8/8/8/8/8/kN6/BN6/6K1 w - - 0 1,g1f1 a3b2 a2b1 b2b3,4 3 2 1 0,8/8/8/8/8/1k6/8/1B3K2 w - - 0 1
+KBNNvK,KBNvK,0,0,8/8/8/8/8/kN6/BN6/6K1 w - - 0 1,g1f1 a3b2,4 3 2,8/8/8/8/8/1N6/Bk6/5K2 w - - 0 1

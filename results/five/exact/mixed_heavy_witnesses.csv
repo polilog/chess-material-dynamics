@@ -1,0 +1,16 @@
+source,target,black_to_move,FEN,UCI_moves,DTM,target_FEN
+KQQRvK,KQQvK,1,8/8/8/8/8/8/R7/k1KQQ3 b - - 0 1,a1a2,2 1,8/8/8/8/8/8/k7/2KQQ3 w - - 0 1
+KQQRvK,KQRvK,1,8/8/8/8/8/8/Q7/kRKQ4 b - - 0 1,a1a2,2 1,8/8/8/8/8/8/k7/1RKQ4 w - - 0 1
+KQQRvK,KRvK,1,8/8/8/2R5/8/8/Q7/k1QK4 b - - 0 1,a1a2 c1a1 a2a1,6 5 4 3,8/8/8/2R5/8/8/8/k2K4 w - - 0 1
+KQQRvK,KQvK,1,8/8/8/8/4Q3/8/1Q6/k1RK4 b - - 0 1,a1b2 c1a1 b2a1,6 5 4 3,8/8/8/8/4Q3/8/8/k2K4 w - - 0 1
+KQQRvK,KQQvK,0,8/8/8/8/3Q2Q1/8/1R6/k2K4 w - - 0 1,d4a4 a1b2,3 2 1,8/8/8/8/Q5Q1/8/1k6/3K4 w - - 0 1
+KQQRvK,KQRvK,0,8/8/8/5Q2/8/8/8/k3KQR1 w - - 0 1,f5b1 a1b1,5 4 3,8/8/8/8/8/8/8/1k2KQR1 w - - 0 1
+KQQRvK,KQvK,0,8/8/8/8/6Q1/8/1k3KQ1/2R5 w - - 0 1,f2e3 b2c1 g4d1 c1d1,5 4 3 2 1,8/8/8/8/8/4K3/6Q1/3k4 w - - 0 1
+KQRRvK,KRRvK,1,8/8/8/8/8/8/Q7/kRKR4 b - - 0 1,a1a2,4 3,8/8/8/8/8/8/k7/1RKR4 w - - 0 1
+KQRRvK,KQRvK,1,8/8/8/8/8/8/R7/kRKQ4 b - - 0 1,a1a2,2 1,8/8/8/8/8/8/k7/1RKQ4 w - - 0 1
+KQRRvK,KRvK,1,8/8/8/8/8/2R5/Q7/kRK5 b - - 0 1,a1a2 b1a1 a2a1,4 3 2 1,8/8/8/8/8/2R5/8/k1K5 w - - 0 1
+KQRRvK,KQvK,1,8/8/8/7Q/8/8/R7/kR1K4 b - - 0 1,a1b1 d1d2 b1a2,6 5 4 3,8/8/8/7Q/8/8/k2K4/8 w - - 0 1
+KQRRvK,KQRvK,0,8/8/8/8/8/1R4Q1/1R6/k2K4 w - - 0 1,b3a3 a1b2,3 2 1,8/8/8/8/8/R5Q1/1k6/3K4 w - - 0 1
+KQRRvK,KRRvK,0,8/8/8/4RQ2/8/8/8/k3KR2 w - - 0 1,f5b1 a1b1,5 4 3,8/8/8/4R3/8/8/8/1k2KR2 w - - 0 1
+KQRRvK,KRvK,0,8/8/8/8/6Q1/8/1k2K1R1/2R5 w - - 0 1,e2d3 b2c1 g4d1 c1d1,5 4 3 2 1,8/8/8/8/8/3K4/6R1/3k4 w - - 0 1
+KQRRvK,KQvK,0,8/8/3R4/8/8/8/1k2K2Q/2R5 w - - 0 1,e2e3 b2c1 d6d1 c1d1,5 4 3 2 1,8/8/8/8/8/4K3/7Q/3k4 w - - 0 1

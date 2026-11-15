@@ -1,0 +1,9 @@
+# Generated tablebases, compiled programs and run outputs.
+/work/
+*.bin
+*.o
+*.so
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store

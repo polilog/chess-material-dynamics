@@ -1,0 +1,4 @@
+source,target,WDL,black_to_move,FEN,UCI_moves,distance,target_FEN
+KBBBvK,KBBvK,1,0,8/8/8/8/8/8/B7/k1KBB3 w - - 0 1,c1c2 a1a2,9 8 7,8/8/8/8/8/8/k1K5/3BB3 w - - 0 1
+KBBBvK,KBBvK,1,1,8/8/8/8/8/8/B7/k1KBB3 b - - 0 1,a1a2,8 7,8/8/8/8/8/8/k7/2KBB3 w - - 0 1
+KBBBvK,KBBvK,0,1,8/8/8/8/8/8/8/kB1KB1B1 b - - 0 1,a1b1,1 0,8/8/8/8/8/8/8/1k1KB1B1 w - - 0 1

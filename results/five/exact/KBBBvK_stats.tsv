@@ -1,0 +1,4 @@
+material	turn	valid	wins	draws	dead	max_dtm	max_dtd0	infinite_dtd0
+KBBBvK	0	10939766	8089520	2850246	2849421	31	1	0
+KBBBvK	1	17077704	11681659	5396045	4143509	38	2	0
+audit_errors	0	legal_moves	383141300

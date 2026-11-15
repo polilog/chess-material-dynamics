@@ -1,0 +1,4 @@
+material	turn	valid	wins	draws	max_dtm	reach_4	reach_3	max_fen
+KQQQvK	0	4513277	4513277	0	5	109124	0	4Q1Q1/8/8/8/7Q/8/8/k3K3 w - - 0 1
+KQQQvK	1	17077704	16400670	677034	8	2745590	8611	8/8/8/8/8/1Q3KQQ/k7/8 b - - 0 1
+audit_errors	0	legal_moves	320474646
