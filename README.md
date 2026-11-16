@@ -10,11 +10,15 @@ The [Stage A analysis](docs/stage-a-complexity.md) proves a reduction in an expl
 
 The [Stage A2 audit](docs/stage-a2-literature.md) checks exact theorems about reachability games, quantitative optimal play, abstraction soundness, generalized chess, historical reachability, and endgame-table metrics. It identifies the missing chess-specific step: a sound, useful cover of **all** optimal first entries from `s₀` into a chosen material layer.
 
-[Stage B](docs/stage-b-targets.md) screens mechanism-driven materials and records three independently replayed historical terminal witnesses: White mate with 31 pieces, Black mate with 31 pieces, and a 26-piece stalemate. These establish `H_W`, `H_L`, and `H_D` examples, respectively; none proves an optimal opening path or a forbidden material.
+[Stage B](docs/stage-b-targets.md) screens mechanism-driven materials and records four independently replayed historical terminal witnesses, including a White mate with all Black resources intact. These establish `H_W`, `H_L`, and `H_D` examples; none proves an optimal opening path or a forbidden material.
 
 [Stages D–F](docs/stages-d-f.md) prove a rank-budget first-entry barrier: a complete cover of optimal entries with local DTM smaller than the legal distance to a target would exclude that target without knowing opening DTM. No such cover has yet been certified for a concrete forbidden material. The document records the best conditional conclusion in each W, D-WDL, D-DTD, and L case.
 
 The [proof strategy](docs/research-strategy.md) turns the retained endgame results and the original research brief into an ordered program: recover historical target certificates, derive unavoidable resource-event frontiers, try to falsify each proposed cut, and only then prove an exclusion covering every optimal opening path.
+
+The [18-piece target dossier](docs/target-dossier-18.md) now proves an exact capture-and-promotion ledger for every legal history to `KP–KQ⁹R²B²N²`: Black retains all 16 resources, White makes no capture, and each first entry into a lower piece-count layer is after a Black capture with White to move. The claimed historical White-win certificate for this target is still unavailable, so `H_W` membership remains unverified.
+
+The [12-piece fallback dossier](docs/target-dossier-12.md) records the weaker event frontier for `KP–KQ⁹`. A separate [26-piece draw dossier](docs/target-dossier-draw.md) gives a fixed first-entry turn and a verified `H_D` witness, while identifying the missing draw-preserving prefix needed for a DTD bound.
 
 ### Retained local endgame results
 
@@ -33,7 +37,9 @@ KP–K → KR–K → K–K
 
 The proof uses the legal choice to promote to a bishop or knight, immediately creating a dead position. It does not need the value or mate distance of the opening. A queen or rook promotion that itself causes stalemate is a terminal exception; the theorem does not exclude its material. See the [complete statement and proof](docs/result.md).
 
-This is a **conditional trajectory restriction**, not a proof that any material is absent from every optimal opening game. A related shorter observation was already present in the previous local release; no novelty claim is made for it. The main conjecture remains open for a White win, a draw under either draw policy, and a Black win.
+The retained queen-only DTM boundary has also been [regenerated in a focused audit](scripts/reproduce_queen_boundary.py) and transferred to the opening rules: conditional on a White win, a fully optimal game cannot visit `KQ^a–K` with `a≥4` and later `KQ–K`; the color-reflected conditional Black-win statement also holds. A [second focused audit](scripts/reproduce_pawn_queen_boundary.py) transfers the WDL-only restriction `KP–KQ^a → KP–K` for a pawn-side win and `a≥2`. It also checks a concrete D-WDL path that is excluded by D-DTD.
+
+These are **conditional trajectory restrictions**, not proofs that any material is absent from every optimal opening game. Their local forms were already present in the previous release; no novelty claim is made for them. The main conjecture remains open for a White win, a draw under either draw policy, and a Black win.
 
 ## Research map
 
@@ -46,6 +52,9 @@ This is a **conditional trajectory restriction**, not a proof that any material 
 | [Stage C: existence attempts](docs/stage-c-existence.md) | Failed counting, horizon, and local-barrier arguments with exact missing conditions |
 | [Stages D–F: barrier and conclusions](docs/stages-d-f.md) | Proved transfer criterion, chess attempts, four-case status, and application limits |
 | [Proof strategy](docs/research-strategy.md) | Target sequence, universal-cut architecture, evidence gates, and first deliverable |
+| [18-piece target dossier](docs/target-dossier-18.md) | Proved resource ledger, last-event split, and certificate gap |
+| [12-piece fallback dossier](docs/target-dossier-12.md) | Nine-queen resource ledger and weaker turn frontier |
+| [26-piece draw dossier](docs/target-dossier-draw.md) | Verified `H_D` target, capture frontier, and DTD gap |
 | [Proved result](docs/result.md) | Self-contained proof, terminal exception, and supporting lemmas |
 | [Methods and next steps](docs/methods.md) | Literature, proof mechanisms, candidate targets, and missing links |
 | [Retained local study](docs/prior-work.md) | Endgame findings restored in this tree and their transfer limits |
@@ -55,7 +64,7 @@ This is a **conditional trajectory restriction**, not a proof that any material 
 
 ## Scope and status
 
-- **Proved in this investigation:** the abstract-game reduction and its limits; the rank-budget first-entry criterion; the draw-policy inclusion; and a 79/80-ply historical lower bound for nine queens. The promotion-fork proof is given self-containedly, with prior-work provenance.
+- **Proved in this investigation:** the abstract-game reduction and its limits; the rank-budget first-entry criterion; the 18-piece target resource ledger; the draw-policy inclusion; and a 79/80-ply historical lower bound for nine queens. The promotion-fork proof is given self-containedly, with prior-work provenance.
 - **Retained local evidence:** small-endgame transition and path results from [release `457fc79`](https://github.com/polilog/chess-material-dynamics/tree/457fc79d507ef5c3c78b5450f964f1df438976ca), now present again in `src/`, `results/`, and `proofs/`. Their model omits castling and does not certify optimal prefixes from the opening.
 - **Open:** whether any outcome-compatible, historically reachable material is absent from every fully optimal game from the standard start.
 

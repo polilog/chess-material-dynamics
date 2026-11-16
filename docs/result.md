@@ -10,6 +10,31 @@ The position immediately before the contemplated heavy-piece promotion lies on a
 
 **Boundary of the result.** The theorem excludes an ordered segment of a game. It does not show that `KQ–K` or `KR–K` is absent from `R_D-DTD`: either material might arise along a different path or as a terminal stalemate. It does not apply to D-WDL, where a move preserving the draw need not minimize time to a terminal draw. The shorter three-material version appeared in the [previous local release](https://github.com/polilog/chess-material-dynamics/blob/457fc79d507ef5c3c78b5450f964f1df438976ca/docs/model-and-theorems.md); no priority claim is made here.
 
+## Transferred queen-only DTM barrier
+
+**Theorem (retained computed boundary in the opening rule model).** Conditional on `V(s₀)=W`, no fully DTM-optimal game from `s₀` can visit `KQ^a–K` with `a≥4` and later visit `KQ–K`. Conditional on `V(s₀)=L`, the color-reflected statement holds for `K–KQ^a` followed by `K–KQ`. This forbids an **ordered pair of materials**, not `KQ–K` or `K–KQ` as a material in all optimal games.
+
+**Proof.** The [retained exact table](model-and-theorems.md#3-general-material-barriers-from-exact-boundaries) gives zero strict paths from a White-to-move, White-winning `KQQQ–K` position to `KQ–K`. We regenerated the relevant `K–K`, `KQ–K`, `KQQ–K`, and `KQQQ–K` tables with the source-derived [focused verifier](../scripts/reproduce_queen_boundary.py). Its Bellman audit reported zero errors over 320,474,646 legal moves; the regenerated statistics and distance histogram match the released files exactly. The table reports zero such paths when White moves and 8,611 when Black moves, so the incoming turn is essential.
+
+Starting from `KQ^a–K` with `a≥4`, any play that later has just one White queen must first pass through `KQQQ–K`. There are no pawns to promote, and the bare Black king must capture the queen that reduces the count from four to three. It is therefore White's turn at the first three-queen entry. An optimal prefix preserves W and has a strict DTM-optimal suffix, contradicting the zero-path table. The queen-only states and all their descendants have no rooks or pawns, so castling and en passant are unavailable. Both the retained decisive endgame solver and the opening model treat infinite play as a draw and use no repetition or move-count termination for DTM. Their WDL/DTM game graphs on these states therefore coincide. Color reflection gives the L statement for a path that actually starts at the ordinary White-to-move opening. ∎
+
+**Evidence limit.** The focused verifier reuses the released move generator and retrograde algorithm; it is a reproducible regeneration, not an independent solver. A separately replayed Black-to-move positive path in the retained [witness file](../results/five/exact/heavy_triples_witnesses.csv) confirms that dropping the turn condition would be false. The theorem still needs a new opening-specific cut before it can exclude `KQ–K` globally; a path from `s₀` could reach that material without ever visiting four queens.
+
+## Transferred pawn-versus-queens WDL barrier
+
+**Theorem (retained computed WDL boundary in the opening rule model).** Conditional on `V(s₀)=W`, no fully optimal game from `s₀` can visit White `KP–KQ^a` with `a≥2` and later visit `KP–K`. Conditional on `V(s₀)=L`, the color-reflected statement holds for Black's pawn side. The exclusion uses only WDL preservation, so it holds under either decisive tie-breaker. It is again an ordered-pair restriction, not a global prohibition of `KP–K`.
+
+**Proof.** If the pawn side starts against at least two opposing queens and later faces a bare king, it must first pass from two queens to one. The pawn side captures the queen that makes this transition, so the remaining queen side moves next. The [focused WDL regeneration](../scripts/reproduce_pawn_queen_boundary.py) solves the necessary `KQ–KP` subsystem, including all possible pawn promotions, and propagates WDL-preserving predecessors of queen captures. For a **pawn-side win** it finds 361,708 canonical `KQ–KP` sources from which the queen can eventually be captured while preserving WDL, but zero with the queen side to move. A fully optimal game preserves its decisive WDL at every ply, so the required first one-queen entry cannot continue to `KP–K` while preserving the pawn-side win. There are no rooks and only one pawn in these states or descendants; castling and en passant cannot occur. The regenerated no-repetition WDL graph therefore matches the opening rule model. The argument is color symmetric at the local boundary and applies to an actual opening path only under its stated initial outcome. ∎
+
+**Why the draw analogue fails under D-WDL.** The same regeneration finds one canonical queen-to-move **drawn** `KQ–KP` state with a WDL-preserving path to `KP–K`:
+
+```text
+k7/2p5/1Q1K4/8/8/8/8/8 w - - 0 1
+1.Kc6 cxb6 2.Kxb6
+```
+
+White begins in check from the pawn on c7. White can play `Qxc7` or `Kxc7`, each immediately stalemating Black, so White can secure a draw. On any other legal White move, the queen remains on b6 and Black can play `cxb6`; after that White has a bare king and cannot force mate. The source is therefore D. The displayed line stays in D and ends with bare kings, so it is D-WDL optimal. It is **not** D-DTD optimal: `Qxc7` or `Kxc7` gives a terminal draw in one ply instead of three. The moves and terminal states are checked independently with `python-chess` by the focused verifier. This concrete exception explains why the WDL winning-side barrier cannot simply be copied to D-WDL and why the old DTD condition is substantive.
+
 ## Draw-policy inclusion
 
 **Proposition.** `R_D-DTD ⊆ R_D-WDL`, while `H_D` is identical under the two draw policies.

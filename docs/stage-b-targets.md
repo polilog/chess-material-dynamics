@@ -4,17 +4,18 @@
 
 ## Verified historical and outcome-compatible controls
 
-The three complete games below were replayed from the standard array with `python-chess` 1.11.2. The script checks every SAN move, final FEN, piece counts, and the terminal result. Terminal checkmate or stalemate proves the displayed state's WDL in our no-repetition/no-move-counter model. It says nothing about the optimality of the prefix.
+The four complete games below were replayed from the standard array with `python-chess` 1.11.2. The script checks every SAN move, final FEN, piece counts, and the terminal result. Terminal checkmate or stalemate proves the displayed state's WDL in our no-repetition/no-move-counter model. It says nothing about the optimality of the prefix.
 
 | Outcome | Legal game | Final material (P,N,B,R,Q by color) | Status |
 | --- | --- | --- | --- |
 | W | `1.e4 e5 2.Qh5 Nc6 3.Bc4 Nf6 4.Qxf7#` | White `(8,2,2,2,1)`; Black `(7,2,2,2,1)` | A concrete element of `H_W` with 31 pieces. |
+| W | `1.e4 f6 2.e5 fxe5 3.d4 g5 4.Qh5#` | White `(7,2,2,2,1)`; Black `(8,2,2,2,1)` | A 31-piece `H_W` control with all Black resources intact and no White capture. |
 | L | `1.f4 e5 2.g4 exf4 3.h3 Qh4#` | White `(7,2,2,2,1)`; Black `(8,2,2,2,1)` | A concrete element of `H_L` with 31 pieces. |
 | D | Loyd's `1.e3 a5 2.Qh5 Ra6 3.Qxa5 h5 4.Qxc7 Rah6 5.h4 f6 6.Qxd7+ Kf7 7.Qxb7 Qd3 8.Qxb8 Qh7 9.Qxc8 Kg6 10.Qe6` | White `(8,2,2,2,1)`; Black `(4,1,1,2,1)` | Terminal stalemate, hence a concrete element of `H_D` with 26 pieces. [Historical account](https://www.chesshistory.com/winter/extra/loyd.html). |
 
 Machine-readable records are in [historical_witnesses.json](../data/historical_witnesses.json). Run `python3 -m pip install -r requirements.txt` and `python3 scripts/verify_historical_witnesses.py` from the repository root. The check validates the terminal witnesses, not any minimax property of their earlier positions.
 
-The W and L controls differ by which side loses a pawn. Their histories do not imply a color-symmetry relation for optimal play from `s₀`, because White moves first. The D witness has six Black resources removed and a proven terminal draw; its 19-ply legal history is **not** an upper bound on `DTD(s₀)` under `V(s₀)=D`, since intermediate positions have not been shown to remain in the D region.
+The first W and L controls differ by which side loses a pawn. Their histories do not imply a color-symmetry relation for optimal play from `s₀`, because White moves first. The additional W control shows that Black can retain all 16 resources and White can avoid captures in a historically reachable White-winning state; material surplus alone cannot exclude the 18-piece pilot. The D witness has six Black resources removed and a proven terminal draw; its 19-ply legal history is **not** an upper bound on `DTD(s₀)` under `V(s₀)=D`, since intermediate positions have not been shown to remain in the D region.
 
 ## Mechanism-driven candidates
 

@@ -8,6 +8,14 @@
     "material": {"white": [8, 2, 2, 2, 1], "black": [7, 2, 2, 2, 1]}
   },
   {
+    "id": "white_mate_black_full_31",
+    "san": "e4 f6 e5 fxe5 d4 g5 Qh5#",
+    "plies": 7,
+    "terminal": "white_win",
+    "fen": "rnbqkbnr/ppppp2p/8/4p1pQ/3P4/8/PPP2PPP/RNB1KBNR b KQkq - 1 4",
+    "material": {"white": [7, 2, 2, 2, 1], "black": [8, 2, 2, 2, 1]}
+  },
+  {
     "id": "black_mate_31",
     "san": "f4 e5 g4 exf4 h3 Qh4#",
     "plies": 6,

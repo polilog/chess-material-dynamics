@@ -2,6 +2,17 @@
 
 > **Scope:** These commands reproduce the retained local endgame study. For the new opening-history witnesses, run `python3 scripts/verify_historical_witnesses.py` after installing the repository requirements. The two tracks use different state/rule assumptions; see the [research model](problem.md).
 
+## Focused boundary checks for the opening project
+
+The following source-derived subset builds avoid regenerating the entire old corpus. They compile the released C++ move generator and retrograde logic in `work/`, then check only the boundaries transferred in the [current result](result.md). Install `requirements.txt` first; a C++17 compiler is required. The generated code replaces the old GCC-only umbrella header with standard C++ headers, so the focused checks also run with Clang.
+
+```bash
+python3 scripts/reproduce_queen_boundary.py
+python3 scripts/reproduce_pawn_queen_boundary.py
+```
+
+The first check regenerates the `KQQQvK` DTM statistics and histogram, checks zero Bellman errors, and confirms zero winner-to-move strict paths versus 8,611 loser-to-move paths to `KQvK`. The second rebuilds the `KQvKP` WDL subsystem, confirms zero queen-to-move paths to `KPvK` for a pawn-side win, and replays the concrete drawn exception with `python-chess`. These are reproductions of the **same** solver method, not independent full-table comparisons. For the new historical terminal games, run `python3 scripts/verify_historical_witnesses.py`.
+
 ## Environment and commands
 
 Python 3.10+, NumPy, GCC with C++17/pthreads, Linux or WSL (the word solver uses POSIX mmap). Suggested several GB RAM and >=12 GB free disk. Install requirements, then run from the repository root:
