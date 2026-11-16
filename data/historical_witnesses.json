@@ -1,0 +1,26 @@
+[
+  {
+    "id": "white_mate_31",
+    "san": "e4 e5 Qh5 Nc6 Bc4 Nf6 Qxf7#",
+    "plies": 7,
+    "terminal": "white_win",
+    "fen": "r1bqkb1r/pppp1Qpp/2n2n2/4p3/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 0 4",
+    "material": {"white": [8, 2, 2, 2, 1], "black": [7, 2, 2, 2, 1]}
+  },
+  {
+    "id": "black_mate_31",
+    "san": "f4 e5 g4 exf4 h3 Qh4#",
+    "plies": 6,
+    "terminal": "black_win",
+    "fen": "rnb1kbnr/pppp1ppp/8/8/5pPq/7P/PPPPP3/RNBQKBNR w KQkq - 1 4",
+    "material": {"white": [7, 2, 2, 2, 1], "black": [8, 2, 2, 2, 1]}
+  },
+  {
+    "id": "loyd_stalemate_26",
+    "san": "e3 a5 Qh5 Ra6 Qxa5 h5 Qxc7 Rah6 h4 f6 Qxd7+ Kf7 Qxb7 Qd3 Qxb8 Qh7 Qxc8 Kg6 Qe6",
+    "plies": 19,
+    "terminal": "draw_stalemate",
+    "fen": "5bnr/4p1pq/4Qpkr/7p/7P/4P3/PPPP1PP1/RNB1KBNR b KQ - 2 10",
+    "material": {"white": [8, 2, 2, 2, 1], "black": [4, 1, 1, 2, 1]}
+  }
+]

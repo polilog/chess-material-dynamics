@@ -1,5 +1,7 @@
 # Methods, evidence, and next steps
 
+This is the working research plan. The detailed [Stage A reduction](stage-a-complexity.md), [Stage A2 theorem audit](stage-a2-literature.md), and [Stage B target screening](stage-b-targets.md) provide proofs, source-specific transfer checks, and replayed historical witnesses; the shorter map below records the methods selected for further chess work.
+
 ## What existing mathematics supplies
 
 | Result | Precise use here | Missing chess-specific step |
@@ -29,9 +31,9 @@ For a decisive path, DTM supplies a strictly decreasing integer rank. If a propo
 | --- | --- | --- | --- |
 | W | Initial material minus Black's f-pawn | `1.e4 e5 2.Qh5 Nc6 3.Bc4 Nf6 4.Qxf7#` is a legal White mate. This proves one member of `H_W`; it is only a control. | No exclusion from `R_W` is known. |
 | W | `KP–KQ⁹` with a White win | The earlier research brief reports local certificates; they are **unverified here** and absent from the inspected previous release. | Eight Black promotions and at least 80 plies precede the target; no bound on `DTM(s₀)` connects that cost to optimal play. |
-| D-WDL | A terminal no-capture stalemate with all 32 pieces | A recorded 12-move construction exists ([historical account with moves](https://www.chesshistory.com/winter/winter08.html)). Its material is already the opening material, so it is not a forbidden-material candidate. | A cooperative stalemate history need not stay in the minimax D region; it does not bound `DTD(s₀)`. |
+| D-WDL | The 26-piece terminal stalemate material | Loyd's 19-ply game was replayed and gives a concrete member of `H_D`; see [Stage B](stage-b-targets.md). | A cooperative stalemate history need not stay in the minimax D region; it does not bound `DTD(s₀)` or exclude that material from `R_D`. |
 | D-DTD | Nonterminal heavy-piece material after `KP–K` | The [promotion-fork theorem](result.md) excludes this **order** of materials. | The heavy-piece material may occur through another path or as terminal stalemate. |
-| L | Color-reflected heavy-piece endgame families | Prior local tables study them; no historical optimal opening prefix is certified. `1.f3 e5 2.g4 Qh4#` is a simple control proving `H_L` contains the opening material. | Exchanging colors changes which side moves first at the standard start. |
+| L | Color-reflected heavy-piece endgame families | Prior local tables study them; no historical optimal opening prefix is certified. `1.f4 e5 2.g4 exf4 3.h3 Qh4#` is a verified Black-mate control with 31 pieces. | Exchanging colors changes which side moves first at the standard start. |
 
 An extreme-looking material is not a theorem target until its legal history and at least one compatible WDL state are certified. An arbitrary legal FEN is not enough. Conversely, a historical witness with the right WDL is still not an optimal opening witness.
 
