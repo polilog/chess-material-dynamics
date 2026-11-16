@@ -14,6 +14,8 @@ The [Stage A2 audit](docs/stage-a2-literature.md) checks exact theorems about re
 
 [Stages D–F](docs/stages-d-f.md) prove a rank-budget first-entry barrier: a complete cover of optimal entries with local DTM smaller than the legal distance to a target would exclude that target without knowing opening DTM. No such cover has yet been certified for a concrete forbidden material. The document records the best conditional conclusion in each W, D-WDL, D-DTD, and L case.
 
+The [proof strategy](docs/research-strategy.md) turns the retained endgame results and the original research brief into an ordered program: recover historical target certificates, derive unavoidable resource-event frontiers, try to falsify each proposed cut, and only then prove an exclusion covering every optimal opening path.
+
 ### Retained local endgame results
 
 The original exact endgame study remains in this working tree. Its [theorems](docs/model-and-theorems.md) prove source-to-target material barriers, including `KQ^a–K → KQ–K` for `a≥4` under strict DTM and `KP–KQ^a → KP–K` for `a≥2` under the stated WDL/DTD conditions. Its [result tables](docs/results.md), [certificates](proofs/wdl_proofs.json), [solvers](src/), and [reproduction guide](docs/reproduction.md) are retained. The quick structural check validates 134,918 negative pair rows, 1,002 propagated exclusions, and legal replay of the released positive paths.
@@ -43,6 +45,7 @@ This is a **conditional trajectory restriction**, not a proof that any material 
 | [Stage B: target screening](docs/stage-b-targets.md) | Verified historical controls and ranked candidate mechanisms |
 | [Stage C: existence attempts](docs/stage-c-existence.md) | Failed counting, horizon, and local-barrier arguments with exact missing conditions |
 | [Stages D–F: barrier and conclusions](docs/stages-d-f.md) | Proved transfer criterion, chess attempts, four-case status, and application limits |
+| [Proof strategy](docs/research-strategy.md) | Target sequence, universal-cut architecture, evidence gates, and first deliverable |
 | [Proved result](docs/result.md) | Self-contained proof, terminal exception, and supporting lemmas |
 | [Methods and next steps](docs/methods.md) | Literature, proof mechanisms, candidate targets, and missing links |
 | [Retained local study](docs/prior-work.md) | Endgame findings restored in this tree and their transfer limits |
