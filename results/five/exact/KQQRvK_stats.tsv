@@ -1,0 +1,4 @@
+material	turn	valid	wins	draws	max_dtm	reach_Q	reach_R	reach_QR	reach_pair	max_fen
+KQQRvK	0	16684986	16684986	0	7	105	0	103601	344542	8/6RQ/6KQ/8/8/2k5/8/8 w - - 0 1
+KQQRvK	1	51229584	49662827	1566757	12	193358	11931	5697681	3940549	8/8/8/8/3Q4/2k4R/8/K6Q b - - 0 1
+audit_errors	0	legal_moves	1055560937

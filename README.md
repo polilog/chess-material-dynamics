@@ -14,6 +14,12 @@ The [Stage A2 audit](docs/stage-a2-literature.md) checks exact theorems about re
 
 [Stages D–F](docs/stages-d-f.md) prove a rank-budget first-entry barrier: a complete cover of optimal entries with local DTM smaller than the legal distance to a target would exclude that target without knowing opening DTM. No such cover has yet been certified for a concrete forbidden material. The document records the best conditional conclusion in each W, D-WDL, D-DTD, and L case.
 
+### Retained local endgame results
+
+The original exact endgame study remains in this working tree. Its [theorems](docs/model-and-theorems.md) prove source-to-target material barriers, including `KQ^a–K → KQ–K` for `a≥4` under strict DTM and `KP–KQ^a → KP–K` for `a≥2` under the stated WDL/DTD conditions. Its [result tables](docs/results.md), [certificates](proofs/wdl_proofs.json), [solvers](src/), and [reproduction guide](docs/reproduction.md) are retained. The quick structural check validates 134,918 negative pair rows, 1,002 propagated exclusions, and legal replay of the released positive paths.
+
+These are **local** results for locally legal endgame states. They do not by themselves show that a source state occurs on a fully optimal path from the standard opening. Some old calculations use automatic third repetition and omit castling; their rule model must be matched before transfer to this project's no-repetition opening model. See [scope and provenance](docs/prior-work.md).
+
 ### Conditional chess restriction
 
 In the draw model where both players use the shortest path to a terminal draw as a tie-breaker, an optimal game that reaches `KP–K` cannot later reach a **nonterminal** `KQ–K` or `KR–K` for the same side. In particular, neither of these material sequences can occur:
@@ -39,15 +45,17 @@ This is a **conditional trajectory restriction**, not a proof that any material 
 | [Stages D–F: barrier and conclusions](docs/stages-d-f.md) | Proved transfer criterion, chess attempts, four-case status, and application limits |
 | [Proved result](docs/result.md) | Self-contained proof, terminal exception, and supporting lemmas |
 | [Methods and next steps](docs/methods.md) | Literature, proof mechanisms, candidate targets, and missing links |
-| [Prior local study](docs/prior-work.md) | Relevant endgame findings from the previous release and their limits |
+| [Retained local study](docs/prior-work.md) | Endgame findings restored in this tree and their transfer limits |
+| [Local endgame theorems](docs/model-and-theorems.md) | Exact transition and trajectory barriers in the retained local model |
+| [Local results and reproduction](docs/results.md) | Tables, certificates, solvers, verification instructions, and coverage |
 | [Research standards](CONTRIBUTING.md) | Evidence and reproducibility requirements for new claims |
 
 ## Scope and status
 
 - **Proved in this investigation:** the abstract-game reduction and its limits; the rank-budget first-entry criterion; the draw-policy inclusion; and a 79/80-ply historical lower bound for nine queens. The promotion-fork proof is given self-containedly, with prior-work provenance.
-- **Available as prior local evidence:** small-endgame transition and path results in [release `457fc79`](https://github.com/polilog/chess-material-dynamics/tree/457fc79d507ef5c3c78b5450f964f1df438976ca). Their model omits castling and does not certify optimal prefixes from the opening.
+- **Retained local evidence:** small-endgame transition and path results from [release `457fc79`](https://github.com/polilog/chess-material-dynamics/tree/457fc79d507ef5c3c78b5450f964f1df438976ca), now present again in `src/`, `results/`, and `proofs/`. Their model omits castling and does not certify optimal prefixes from the opening.
 - **Open:** whether any outcome-compatible, historically reachable material is absent from every fully optimal game from the standard start.
 
-The former endgame data and solvers remain accessible in Git history at the linked release. The current working tree focuses on results that bear directly on the opening-position question. The short historical witnesses are reproducible with `python3 -m pip install -r requirements.txt` followed by `python3 scripts/verify_historical_witnesses.py`. No chess engine evaluation is treated as a proof of the starting position's value.
+The endgame data and solvers are in the working tree. Run `python3 scripts/reproduce.py structure` for the retained structural and witness checks. The short opening-history witnesses are reproducible with `python3 -m pip install -r requirements.txt` followed by `python3 scripts/verify_historical_witnesses.py`. No chess engine evaluation is treated as a proof of the starting position's value.
 
 Stages A–F now have explicit interim conclusions. The research remains active: no candidate has yet passed the required combination of historical witness, compatible WDL proof, and global exclusion from all optimal opening paths.

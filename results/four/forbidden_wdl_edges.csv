@@ -1,0 +1,63 @@
+source,target,WDL,reason_class
+KBvK,KvK,0,dead source: KBvK or KNvK
+KBvKP,KBvKB,1,promotion (requires exact source/target analysis)
+KBvKP,KBvKN,-1,promotion (requires exact source/target analysis)
+KBvKP,KBvKN,1,promotion (requires exact source/target analysis)
+KNPvK,KNNvK,1,promotion (requires exact source/target analysis)
+KNvK,KvK,0,dead source: KBvK or KNvK
+KNvKP,KNvKB,-1,promotion (requires exact source/target analysis)
+KNvKP,KNvKB,1,promotion (requires exact source/target analysis)
+KNvKP,KNvKN,-1,promotion (requires exact source/target analysis)
+KNvKP,KNvKN,1,promotion (requires exact source/target analysis)
+KNvKP,KNvKR,1,promotion (requires exact source/target analysis)
+KPvKB,KBvKB,-1,promotion (requires exact source/target analysis)
+KPvKB,KNvKB,-1,promotion (requires exact source/target analysis)
+KPvKB,KNvKB,1,promotion (requires exact source/target analysis)
+KPvKN,KBvKN,-1,promotion (requires exact source/target analysis)
+KPvKN,KBvKN,1,promotion (requires exact source/target analysis)
+KPvKN,KNvKN,-1,promotion (requires exact source/target analysis)
+KPvKN,KNvKN,1,promotion (requires exact source/target analysis)
+KPvKN,KRvKN,-1,promotion (requires exact source/target analysis)
+KPvKP,KNvKP,1,promotion (requires exact source/target analysis)
+KPvKP,KPvKN,-1,promotion (requires exact source/target analysis)
+KPvKR,KNvKR,1,promotion (requires exact source/target analysis)
+KQBvK,KQvK,0,capture leaves lone heavy piece with strong side to move
+KQNvK,KQvK,0,capture leaves lone heavy piece with strong side to move
+KQPvK,KQBvK,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KQPvK,KQNvK,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KQPvK,KQQvK,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KQPvK,KQRvK,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KQPvK,KQvK,0,capture leaves lone heavy piece with strong side to move
+KQQvK,KQvK,0,capture leaves lone heavy piece with strong side to move
+KQRvK,KQvK,0,capture leaves lone heavy piece with strong side to move
+KQRvK,KRvK,0,capture leaves lone heavy piece with strong side to move
+KRBvK,KRvK,0,capture leaves lone heavy piece with strong side to move
+KRNvK,KRvK,0,capture leaves lone heavy piece with strong side to move
+KRPvK,KQRvK,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KRPvK,KRBvK,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KRPvK,KRNvK,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KRPvK,KRRvK,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KRPvK,KRvK,0,capture leaves lone heavy piece with strong side to move
+KRRvK,KRvK,0,capture leaves lone heavy piece with strong side to move
+KRvKP,KRvKN,-1,promotion (requires exact source/target analysis)
+KvKB,KvK,0,dead source: KBvK or KNvK
+KvKN,KvK,0,dead source: KBvK or KNvK
+KvKNP,KvKNN,-1,promotion (requires exact source/target analysis)
+KvKQB,KvKQ,0,capture leaves lone heavy piece with strong side to move
+KvKQN,KvKQ,0,capture leaves lone heavy piece with strong side to move
+KvKQP,KvKQ,0,capture leaves lone heavy piece with strong side to move
+KvKQP,KvKQB,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KvKQP,KvKQN,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KvKQP,KvKQQ,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KvKQP,KvKQR,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KvKQQ,KvKQ,0,capture leaves lone heavy piece with strong side to move
+KvKQR,KvKQ,0,capture leaves lone heavy piece with strong side to move
+KvKQR,KvKR,0,capture leaves lone heavy piece with strong side to move
+KvKRB,KvKR,0,capture leaves lone heavy piece with strong side to move
+KvKRN,KvKR,0,capture leaves lone heavy piece with strong side to move
+KvKRP,KvKQR,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KvKRP,KvKR,0,capture leaves lone heavy piece with strong side to move
+KvKRP,KvKRB,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KvKRP,KvKRN,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KvKRP,KvKRR,0,heavy piece plus pawn versus bare king: promoting side to move is winning
+KvKRR,KvKR,0,capture leaves lone heavy piece with strong side to move

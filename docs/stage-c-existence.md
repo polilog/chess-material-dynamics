@@ -18,7 +18,7 @@ The verified 26-piece Loyd stalemate occurs after 19 legal plies; a separate all
 
 ## Attempt 4: lift a local endgame barrier without a compulsory entry
 
-The [previous release](prior-work.md) reports source-specific exclusions, for example `KQ^a–K → KQ–K` under strict DTM for `a≥4` in its local model. If a fully optimal opening game reaches the source material with matching value and rules, that **particular** continuation to the destination is excluded. The destination may still be reached through another material history. A global material prohibition requires proof that *every* optimal path from `s₀` to the target crosses a forbidden boundary. No such opening-to-boundary lemma has been established.
+The [retained local study](prior-work.md) reports source-specific exclusions, for example `KQ^a–K → KQ–K` under strict DTM for `a≥4` in its local model. If a fully optimal opening game reaches the source material with matching value and rules, that **particular** continuation to the destination is excluded. The destination may still be reached through another material history. A global material prohibition requires proof that *every* optimal path from `s₀` to the target crosses a forbidden boundary. No such opening-to-boundary lemma has been established.
 
 ## Decision after these attempts
 

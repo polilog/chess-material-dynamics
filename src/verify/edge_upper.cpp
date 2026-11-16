@@ -1,0 +1,50 @@
+#include <unistd.h>
+#define main oldmain
+#include "../four/solve.cpp"
+#undef main
+struct Board {array<char,64> a{};int turn=0,ep=-1;};
+struct BM {int p,q;char pr=0;};
+int color(char c){return islower(c)?1:0;} int type(char c){return string("KQRBNP").find(toupper(c));}
+int kingSq(const Board& b,int c){char k=c?'k':'K';for(int i=0;i<64;i++)if(b.a[i]==k)return i;return -1;}
+B bo(const Board& b){B o=0;for(int i=0;i<64;i++)if(b.a[i])o|=bit(i);return o;}
+bool bat(const Board& b,int p,int q){if(p==q)return false;char c=b.a[p];int a=type(c),col=color(c);if(a==K)return king[p]&bit(q);if(a==N)return knight[p]&bit(q);if(a==P)return pawn[col][p]&bit(q);int X=q%8-p%8,Y=q/8-p/8;bool d=abs(X)==abs(Y),r=!X||!Y;if((a==BI&&!d)||(a==R&&!r)||(a==Q&&!d&&!r))return false;int st=(X>0)-(X<0)+8*((Y>0)-(Y<0));for(int i=p+st;i!=q;i+=st)if(b.a[i])return false;return true;}
+bool chk(const Board& b,int col){int k=kingSq(b,col);if(k<0)return true;for(int p=0;p<64;p++)if(b.a[p]&&color(b.a[p])!=col&&bat(b,p,k))return true;return false;}
+int num(const Board&b){return __builtin_popcountll(bo(b));}
+Board act(const Board& b,BM m){Board t=b;char c=t.a[m.p];int col=color(c),a=type(c);t.a[m.p]=0;t.ep=-1;if(a==P&&m.q==b.ep&&!b.a[m.q])t.a[m.q+(col?8:-8)]=0;t.a[m.q]=m.pr?(col?tolower(m.pr):m.pr):c;if(a==P&&abs(m.q-m.p)==16){for(int i:{-1,1})if(m.q%8+i>=0&&m.q%8+i<8&&b.a[m.q+i]==(col?'P':'p'))t.ep=(m.p+m.q)/2;}t.turn=1-b.turn;return t;}
+string bf(const Board&b){string o;for(int r=7;r>=0;r--){int n=0;for(int x=0;x<8;x++){char c=b.a[r*8+x];if(!c)n++;else{if(n)o+=char('0'+n),n=0;o+=c;}}if(n)o+=char('0'+n);if(r)o+='/';}o+=b.turn?" b - ":" w - ";if(b.ep<0)o+='-';else o+=char('a'+b.ep%8),o+=char('1'+b.ep/8);return o+" 0 1";}
+Board parseB(string f){Board b;int x=0,y=7,i=0;for(;f[i]!=' ';i++){char c=f[i];if(c=='/')y--,x=0;else if(isdigit(c))x+=c-'0';else b.a[y*8+x++]=c;}b.turn=f[i+1]=='b';if(f[i+5]!='-')b.ep=f[i+5]-'a'+8*(f[i+6]-'1');return b;}
+string bm(BM m){string s;for(int p:{m.p,m.q})s+=char('a'+p%8),s+=char('1'+p/8);if(m.pr)s+=tolower(m.pr);return s;}
+string bk(const Board&b){string s;for(int i=0;i<64;i++)if(b.a[i])s+=char(i+1),s+=b.a[i];s+=char(b.turn+1);s+=char(b.ep+2);return s;}
+vector<pair<BM,Board>> gen(const Board&b){vector<pair<BM,Board>>out;B o=bo(b);for(int p=0;p<64;p++){char c=b.a[p];if(!c||color(c)!=b.turn)continue;int a=type(c),d=b.turn?-8:8;auto go=[&](int q){if(q<0||q>=64||b.a[q]&&(color(b.a[q])==b.turn||type(b.a[q])==K))return;auto emit=[&](char pr){BM m{p,q,pr};Board t=act(b,m);if(!chk(t,b.turn))out.push_back({m,t});};if(a==P&&(q<8||q>=56))for(char r:string("QRBN"))emit(r);else emit(0);};if(a==K||a==N){B z=a==K?king[p]:knight[p];while(z){int q=__builtin_ctzll(z);z&=z-1;go(q);}}else if(a==P){int q=p+d;if(q>=0&&q<64&&!b.a[q]){go(q);if(p/8==(b.turn?6:1)&&!b.a[q+d])go(q+d);}B z=pawn[b.turn][p];while(z){q=__builtin_ctzll(z);z&=z-1;if(b.a[q]||q==b.ep)go(q);}}else for(int d=a==BI?4:0;d<(a==R?4:8);d++)for(int i=0;ray[p][d][i]>=0;i++){int q=ray[p][d][i];go(q);if(b.a[q])break;}}
+ stable_sort(out.begin(),out.end(),[&](auto&u,auto&v){return !!b.a[u.first.q]>!!b.a[v.first.q];});return out;}
+pair<int,bool> tabval(const Board&b){vector<pair<int,int>> w,bl;for(int i=0;i<64;i++)if(b.a[i]&&type(b.a[i])!=K)(color(b.a[i])?bl:w).push_back({type(b.a[i]),i});sort(w.begin(),w.end());sort(bl.begin(),bl.end());bool sw=w.size()<bl.size()||(w.size()==1&&bl.size()==1&&w[0].first>bl[0].first);if(sw)swap(w,bl);int a=w.size()?w[0].first:0,bb=w.size()==2?w[1].first:bl.size()?bl[0].first:0;int id=ids[a][bb][!bl.empty()];Pos p{};p.s[0]=kingSq(b,sw);p.s[1]=kingSq(b,!sw);int n=2;for(auto q:w)p.s[n++]=q.second;for(auto q:bl)p.s[n++]=q.second;if(sw)for(int i=0;i<n;i++)p.s[i]^=56;p.turn=b.turn^sw;p.ep=b.ep>=0;int z=ts[id].v[enc(ts[id],p)];assert(z!=INV&&z!=UNK);return {z==DEAD?0:sw?-z:z,z==DEAD};}
+unordered_map<string,int> exact;
+bool boundB(const Board&b,int side,int d,int th){if(num(b)<=4)return tabval(b).first*(side?-1:1)>=th;auto it=exact.find(bk(b));if(it!=exact.end())return it->second*(side?-1:1)>=th;auto ch=gen(b);if(ch.empty())return (chk(b,b.turn)?(b.turn==side?-1:1):0)>=th;if(!d)return false;if(b.turn==side){for(auto &x:ch)if(boundB(x.second,side,d-1,th))return true;return false;}for(auto &x:ch)if(!boundB(x.second,side,d-1,th))return false;return true;}
+bool liveB(const Board&b,int d){if(num(b)<=4)return !tabval(b).second;if(exact.count(bk(b)))return true;if(!d)return false;auto ch=gen(b);if(ch.empty())return chk(b,b.turn);for(auto &x:ch)if(liveB(x.second,d-1))return true;return false;}
+mt19937 rng2(173);
+vector<pair<Board,BM>> revB(const Board&t,bool quiet=false){vector<pair<Board,BM>> out;int mover=1-t.turn;if(t.ep>=0)return out;for(int q=0;q<64;q++)if(t.a[q]&&color(t.a[q])==mover){char c=t.a[q];int a=type(c);for(int p=0;p<64;p++)if(!t.a[p]){if(a==P){if(p/8==0||p/8==7||q/8-p/8!=(mover?-1:1)||abs(q%8-p%8)!=(quiet?0:1))continue;}else{Board tt=t;tt.a[p]=c;tt.a[q]=0;if(!bat(tt,p,q))continue;}for(char v:quiet?string(" "):string("QRBNP")){if(v=='P'&&(q<8||q>=56))continue;Board b=t;b.turn=mover;b.ep=-1;b.a[p]=c;b.a[q]=quiet?0:(t.turn?tolower(v):v);if(chk(b,t.turn))continue;out.push_back({b,{p,q,0}});}}}shuffle(out.begin(),out.end(),rng2);return out;}
+bool cert(const Board&s,const Board&t,int z,int d){if(z&&s.turn==(z==-1))return true;return boundB(s,z?(z==-1):!s.turn,d,z!=0);}
+struct Seed{Board b;string suf;};
+string line(const Board&b,BM m){return bf(b)+"\t"+bm(m);}
+vector<string> split(string s,char delim){vector<string>r;stringstream ss(s);string x;while(getline(ss,x,delim))r.push_back(x);return r;}
+using D=uint16_t; const D INF=65535; vector<vector<D>> ds0,ds3;
+void ld(vector<vector<D>>&ds,string prefix){ds.resize(ts.size());for(int i=0;i<(int)ts.size();i++){auto&t=ts[i];ds[i].resize(t.sz);ifstream f(prefix+t.name+".bin",ios::binary);f.read((char*)ds[i].data(),2ull*t.sz);assert(f.gcount()==2ull*t.sz);}}
+pair<int,U> idx(const Board&b){vector<pair<int,int>> w,bl;for(int i=0;i<64;i++)if(b.a[i]&&type(b.a[i])!=K)(color(b.a[i])?bl:w).push_back({type(b.a[i]),i});sort(w.begin(),w.end());sort(bl.begin(),bl.end());bool sw=w.size()<bl.size()||(w.size()==1&&bl.size()==1&&w[0].first>bl[0].first);if(sw)swap(w,bl);int a=w.size()?w[0].first:0,bb=w.size()==2?w[1].first:bl.size()?bl[0].first:0;int id=ids[a][bb][!bl.empty()];Pos p{};p.s[0]=kingSq(b,sw);p.s[1]=kingSq(b,!sw);int n=2;for(auto q:w)p.s[n++]=q.second;for(auto q:bl)p.s[n++]=q.second;if(sw)for(int i=0;i<n;i++)p.s[i]^=56;p.turn=b.turn^sw;p.ep=b.ep>=0;return {id,enc(ts[id],p)};}
+int dist(const Board&b,int model){auto[i,a]=idx(b);return (model==3?ds3:ds0)[i][a];}
+// Can the winner force mate within k plies? exact for all leaves <=4, and exhaustive bounded minimax otherwise.
+bool mateB(const Board&b,int side,int k){if(num(b)<=4)return tabval(b).first==(side?-1:1)&&dist(b,0)<=k;auto ch=gen(b);if(ch.empty())return chk(b,b.turn)&&b.turn!=side;if(k<=0)return false;if(b.turn==side){for(auto&x:ch)if(mateB(x.second,side,k-1))return true;return false;}for(auto&x:ch)if(!mateB(x.second,side,k-1))return false;return true;}
+// Conservative no-shorter draw proof: all possible geometric paths, excluding non-draw leaves; unknown live status makes proof fail.
+bool noDraw(const Board&b,int k,int model){if(k<0)return true;if(num(b)<=4)return tabval(b).first!=0||dist(b,model)>k;auto ch=gen(b);if(ch.empty())return chk(b,b.turn);if(!liveB(b,3))return false;if(!k)return true;for(auto&x:ch)if(!noDraw(x.second,k-1,model))return false;return true;}
+string materialB(const Board&b){string w="K",bl="K";for(char c:string("QRBNP")){for(char x:b.a)if(x==c)w+=c;else if(x==tolower(c))bl+=c;}return w+"v"+bl;}
+Board mirrorB(Board b){Board t;for(int i=0;i<64;i++)if(b.a[i])t.a[i^56]=color(b.a[i])?toupper(b.a[i]):tolower(b.a[i]);t.turn=1-b.turn;t.ep=b.ep<0?-1:b.ep^56;return t;}
+int certS(const Board&s,const Board&t,int z,int model){int d=dist(t,model);if(d==INF||d>8)return 0;auto ch=gen(s);if(ch.empty())return 0;if(z){int side=z==-1; if(s.turn==side){if(d==0)return 1;if(d<=5&&!mateB(s,side,d-1))return 2;}else{if(ch.size()==1)return 3;if(d<=5&&mateB(s,side,d+1))return 4;}return 0;}
+if(!liveB(s,4))return 0;if(ch.size()==1)return 3;if(d>3)return 0;if(!boundB(s,!s.turn,3,0))return 0;if(d==0)return 5;if(noDraw(s,d-1,model)&&noDraw(s,d,model))return 6;return 0;}
+
+// For each target material/WDL/turn/promotion type, exact existence of a target
+// compatible with all four promotion alternatives. Ignore predecessor geometry (upper bound).
+int main(){init();setup();assert(chdir("../four")==0);load();ld(ds0,"dist_");ld(ds3,"rep4_");{int i=ids[P][P][1];ifstream f("rep3_KPvKP.bin",ios::binary);f.read((char*)ds3[i].data(),2ull*ts[i].sz);}
+for(int i=6;i<(int)ts.size();i++){auto&t=ts[i];bool turn[3][2]={},rank[3][2][5]={},wdl[3][2][5]={},strict0[3][2][5]={},strict3[3][2][5]={};long scans=0;for(U a=0;a<(U)t.sz;a++){if(t.v[a]==INV)continue;int z=pc(t.v[a]),zi=z+1;Pos p=dec(t,a);int mover=1-p.turn;turn[zi][p.turn]=true;for(int j=2;j<4;j++){int typ=t.t[j];if(typ==P||t.c[j]!=mover)continue;int row=p.s[j]/8;int want=mover?0:7;if(row!=want&&(t.wk!=16||row!=7-want))continue;rank[zi][mover][typ]=true;if(strict0[zi][mover][typ]&&strict3[zi][mover][typ])continue;Board b=parseB(fen(t,p));int q=p.s[j];if(row!=want){Board bb;for(int x=0;x<64;x++)bb.a[x^56]=b.a[x];bb.turn=b.turn;bb.ep=-1;b=bb;q^=56;}int d0=dist(b,0),d3=dist(b,3);bool ok=true,o0=d0<INF,o3=d3<INF;bool loser=z!=0&&z!=(mover?-1:1);for(char x:string("QRBN")){Board c=b;c.a[q]=mover?tolower(x):x;int y=tabval(c).first;if(y!=z){if(loser||y*(mover?-1:1)>z*(mover?-1:1)){ok=false;break;}continue;}int v0=dist(c,0),v3=dist(c,3);if(loser){if(v0>d0)o0=false;if(v3>d3)o3=false;}else{if(v0<d0)o0=false;if(v3<d3)o3=false;}}
+if(ok){wdl[zi][mover][typ]=true;if(o0)strict0[zi][mover][typ]=true;if(o3)strict3[zi][mover][typ]=true;}
+}}
+for(int z=-1;z<=1;z++)for(int c=0;c<2;c++){cout<<"T\t"<<t.name<<'\t'<<z<<'\t'<<c<<'\t'<<turn[z+1][c]<<'\n';for(int j=1;j<=4;j++)cout<<"P\t"<<t.name<<'\t'<<z<<'\t'<<c<<'\t'<<string("KQRBNP")[j]<<'\t'<<rank[z+1][c][j]<<'\t'<<wdl[z+1][c][j]<<'\t'<<strict0[z+1][c][j]<<'\t'<<strict3[z+1][c][j]<<'\n';}cerr<<t.name<<" done"<<endl;}
+}

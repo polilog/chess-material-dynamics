@@ -22,7 +22,7 @@ The [promotion-fork theorem](result.md) supplies an instance of this logic that 
 
 - **Nine-queen W target.** The 79/80-ply historical lower bound is proved, but it is measured from `s₀`. No bound on `DTM(s₀)` below it is known here, and a historical outcome-compatible witness has not been reproduced. The rank-budget theorem cannot yet certify this target.
 - **Loyd stalemate material in D-DTD.** Its 19-ply legal history proves `H_D`, but may pass through non-drawn states. It supplies neither a finite bound for `DTD(s₀)` nor a first-entry cover. The [abstract counterexample](stage-a-complexity.md#a-short-cooperative-draw-does-not-bound-dtd) proves this inference would be invalid in general.
-- **Small-piece local pair barriers.** The prior endgame release supplies local exclusions, but no checked cover shows every fully optimal opening path to the destination crosses their source class with the required turn and value. Material projection alone cannot supply that cover because consecutive projected edges can require incompatible middle positions.
+- **Small-piece local pair barriers.** The [retained local theorems](model-and-theorems.md#3-general-material-barriers-from-exact-boundaries) supply local exclusions, but no checked cover shows every fully optimal opening path to the destination crosses their source class with the required turn and value. Material projection alone cannot supply that cover because consecutive projected edges can require incompatible middle positions.
 
 These three failures have distinct causes: unknown opening rank, unproved WDL of a legal draw path, and missing compulsory entry. Adding more local positions does not resolve any of them without a structural lemma.
 
