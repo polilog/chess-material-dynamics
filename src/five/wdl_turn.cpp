@@ -1,4 +1,0 @@
-#define main oldmain
-#include "../four/solve.cpp"
-#undef main
-int main(){init();setup();auto cwd=filesystem::current_path();filesystem::current_path("../four");load();filesystem::current_path(cwd);int id=ids[Q][P][1];auto&t=ts[id];for(int z:{-1,0}){vector<uint8_t>seen(t.sz);vector<U>q;long long count[2]={};for(U a=0;a<(U)t.sz;a++){if(t.v[a]!=z)continue;Pos p=dec(t,a);moves(t,p,[&](Move m,Pos v){if(m.cap!=2||m.pr)return;auto[j,u]=child(t,p,m,v);if(pc(ts[j].v[enc(ts[j],u)])*(u.turn!=1-p.turn?-1:1)!=z)return;if(!seen[a])seen[a]=1,q.push_back(a);},true);}auto direct=q.size();for(size_t i=0;i<q.size();i++){Pos p=dec(t,q[i]);count[p.turn]++;if(p.turn==0)cout<<"queen_turn_FEN\t"<<z<<"\t"<<fen(t,p)<<endl;preds(t,p,[&](U b){if(t.v[b]==z&&!seen[b])seen[b]=1,q.push_back(b);});}cout<<"KQvKP\t"<<z<<"\tdirect="<<direct<<"\tqueen_turn="<<count[0]<<"\tpawn_turn="<<count[1]<<endl;}}

@@ -1,9 +1,5 @@
-# Generated tablebases, compiled programs and run outputs.
-/work/
-*.bin
-*.o
-*.so
+.DS_Store
 __pycache__/
 *.py[cod]
 .venv/
-.DS_Store
+work/
